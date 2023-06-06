@@ -16,6 +16,17 @@ def no_filter():
         template = '<!DOCTYPE html><html> <head> <title>Welcome '+payload+'!</title> </head> <body> <h1>Welcome '+payload+'!</h1> <p>Thanks for visiting,'+payload+'!</p> <form method="get" action="/no_filter"> <label for="payload">Enter your payload:</label> <input type="text" name="payload" id="payload" value="" > <button type="submit">Submit</button> </form> </body></html>'
  
         return render_template_string(template)
+
+
+@app.route('/unsafe')
+def unsafe():
+    first_name = request.args.get('name', '')
+    return make_response("Your name is " + first_name)
+
+@app.route('/safe')
+def safe():
+    first_name = request.args.get('name', '')
+    return make_response("Your name is " + escape(first_name))
  
 if __name__ == '__main__':
         app.run(host='0.0.0.0', port=80, debug=False)
