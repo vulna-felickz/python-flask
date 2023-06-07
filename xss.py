@@ -7,6 +7,11 @@ def unsafe():
     first_name = request.args.get('name', '')
     return make_response("Your name is " + first_name)
 
+@app.route('/unsafestr')
+def unsafe():
+    first_name = str(request.args.get('name', ''))
+    return make_response("Your name is " + first_name)
+
 @app.route('/safe')
 def safe():
     first_name = request.args.get('name', '')
