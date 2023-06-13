@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, url_for, render_template_string
 # import jinja2, re, hashlib
 
 app = Flask(__name__)
+app.secret_key = 'SECRET_KEY'
 
 @app.route('/')
 def index():
